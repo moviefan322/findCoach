@@ -11,6 +11,7 @@
         <h2>Interested? Reach out now!</h2>
         <base-button link :to="contactLink">Contact</base-button>
       </header>
+      <router-view></router-view>
     </base-card>
   </section>
   <section>
@@ -34,7 +35,7 @@ export default {
       return this.selectedCoach.firstName + ' ' + this.selectedCoach.lastName
     },
     contactLink() {
-      return this.$route.path + '/' + this.id + '/contact'
+      return this.$route.path + '/contact'
     },
     rate() {
       return this.selectedCoach.hourlyRate
