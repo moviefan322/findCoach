@@ -7,7 +7,7 @@
     </div>
     <div class="actions">
       <base-button mode="outline" :to="coachContactLink">Contact</base-button>
-      <base-button :to="coachDetailLink">Details</base-button>
+      <base-button link :to="coachDetailsLink">Details</base-button>
     </div>
   </li>
 </template>
