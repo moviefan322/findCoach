@@ -1,4 +1,4 @@
-import createStore from 'vuex'
+import { createStore } from 'vuex'
 
 import coachesModule from './modules/coaches/index'
 import requestsModule from './modules/requests/index'
