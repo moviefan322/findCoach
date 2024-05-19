@@ -10,3 +10,10 @@ export interface Coach {
   description: string
   hourlyRate: number
 }
+export interface CoachPayload {
+  first: string
+  last: string
+  areas: string[]
+  desc: string
+  rate: number
+}
