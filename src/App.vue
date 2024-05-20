@@ -13,6 +13,10 @@ import TheHeader from './components/layout/TheHeader.vue'
 export default {
   components: {
     TheHeader
+  },
+  mounted() {
+    console.log(import.meta.env.VITE_TEST)
+    console.log(import.meta.env.VITE_API_KEY)
   }
 }
 </script>

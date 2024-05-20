@@ -53,7 +53,7 @@ export default {
       try {
         await this.$store.dispatch('requests/loadRequests')
       } catch (error) {
-        error = error.message || 'An error occurred while loading requests'
+        this.error = error.message || 'An error occurred while loading requests'
       }
       this.isLoading = false
     },

@@ -37,6 +37,12 @@ export default {
     )
     const responseData = await response.json()
 
+    console.log(response.status)
+
+    if (response.status === 401) {
+      throw new Error('Unauthenticated!')
+    }
+
     if (!response.ok) {
       const error = new Error(responseData.message || 'Failed to fetch requests.')
       throw error
