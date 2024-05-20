@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       selectedCoach: null,
-      id: this.$route.path.split('/').pop()
+      id: this.$route.params.id
     }
   },
   computed: {
