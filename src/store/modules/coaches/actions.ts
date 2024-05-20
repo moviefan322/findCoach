@@ -11,10 +11,13 @@ export default {
       hourlyRate: payload.rate
     }
 
-    const response = await fetch(`https://vue-http-fb066-default-rtdb.firebaseio.com/coaches/${userId}.json`, {
-      method: 'PUT',
-      body: JSON.stringify(coachData)
-    })
+    const response = await fetch(
+      `https://vue-http-fb066-default-rtdb.firebaseio.com/coaches/${userId}.json`,
+      {
+        method: 'PUT',
+        body: JSON.stringify(coachData)
+      }
+    )
 
     // const responseData = await response.json()
 
@@ -27,8 +30,12 @@ export default {
       id: userId
     })
   },
-  async loadCoaches(context: any) {
-    const response = await fetch(`https://vue-http-fb066-default-rtdb.firebaseio.com/coaches.json`)
+  async loadCoaches(context: any, payload: any) {
+    if (!payload.forceRefresh && !context.getters.shouldUpdate) {
+      return
+    }
+
+    const response = await fetch(`https://vue-http-fb066-default-rtdb.firebaseio.com/coaches.jso`)
     const responseData = await response.json()
 
     if (!response.ok) {
@@ -51,5 +58,6 @@ export default {
     }
 
     context.commit('setCoaches', coaches)
+    context.commit('setFetchTimestamp')
   }
 }

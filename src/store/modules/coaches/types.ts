@@ -1,4 +1,5 @@
 export interface CoachState {
+  lastFetch: number | null
   coaches: Coach[]
 }
 
