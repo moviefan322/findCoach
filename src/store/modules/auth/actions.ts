@@ -1,4 +1,4 @@
-let timer
+let timer: any;
 
 export default {
   async login(context: any, payload: any) {
@@ -33,7 +33,7 @@ export default {
     }
 
     const expiresIn = +responseData.expiresIn * 1000
-    const expirationDate = new Date().getTime() + expiresIn
+    const expirationDate = (new Date().getTime() + expiresIn).toString()
 
     localStorage.setItem('token', responseData.idToken)
     localStorage.setItem('userId', responseData.userId)
@@ -53,7 +53,7 @@ export default {
     const userId = localStorage.getItem('userId')
     const tokenExpiration = localStorage.getItem('tokenExpiration')
 
-    const expiresIn = +tokenExpiration - new Date().getTime()
+    const expiresIn = +tokenExpiration! - new Date().getTime()
 
     if (expiresIn < 0) {
       return
@@ -70,7 +70,7 @@ export default {
       })
     }
   },
-  logout(context) {
+  logout(context: any) {
     localStorage.removeItem('token')
     localStorage.removeItem('userId')
     localStorage.removeItem('tokenExpiration')
