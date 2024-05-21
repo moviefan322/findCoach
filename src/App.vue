@@ -14,9 +14,20 @@ export default {
   components: {
     TheHeader
   },
-  mounted() {
-    console.log(import.meta.env.VITE_TEST)
-    console.log(import.meta.env.VITE_API_KEY)
+  computed: {
+    didAutoLogout() {
+      return this.$store.getters.didAutoLogout
+    },
+  },
+  watch: {
+    didAutoLogout(curValue, oldValue) {
+     if(curValue && curValue !== oldValue) {
+       this.$router.replace('/coaches')
+     }
+    }
+  },
+  created() {
+    this.$store.dispatch('tryLogin')
   }
 }
 </script>
