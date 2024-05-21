@@ -33,7 +33,7 @@ export default {
   async loadRequests(context: any) {
     const coachId = context.rootGetters.userId
     const response = await fetch(
-      `https://vue-http-fb066-default-rtdb.firebaseio.com/requests/${coachId}.json`
+      `https://vue-http-fb066-default-rtdb.firebaseio.com/requests/${coachId}.json?auth=${context.rootGetters.token}`
     )
     const responseData = await response.json()
 

@@ -4,11 +4,27 @@
       <h1><router-link to="/">Find A Coach</router-link></h1>
       <ul>
         <li><router-link to="/coaches">All Coaches</router-link></li>
-        <li><router-link to="/requests">Requests</router-link></li>
+        <li v-if="isLoggedIn"><router-link to="/requests">Requests</router-link></li>
+        <li v-else>
+          <router-link to="/auth">Login</router-link>
+        </li>
       </ul>
     </nav>
   </header>
 </template>
+
+<script>
+export default {
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isAuthenticated
+    },
+    isCoach() {
+      return this.$store.getters['coaches/isCoach']
+    }
+  }
+}
+</script>
 
 <style scoped>
 header {

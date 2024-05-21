@@ -8,7 +8,7 @@
             <h2>{{ title }}</h2>
           </slot>
         </header>
-        <section>
+        <section class="mainSec">
           <slot></slot>
         </section>
         <menu v-if="!fixed">
@@ -62,6 +62,10 @@ export default {
 }
 
 dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
   position: fixed;
   top: 20vh;
   left: 10%;
@@ -81,6 +85,7 @@ header {
   color: white;
   width: 100%;
   padding: 1rem;
+  margin-bottom: 3rem;
 }
 
 header h2 {

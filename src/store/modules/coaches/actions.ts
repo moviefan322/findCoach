@@ -12,7 +12,7 @@ export default {
     }
 
     const response = await fetch(
-      `https://vue-http-fb066-default-rtdb.firebaseio.com/coaches/${userId}.json`,
+      `https://vue-http-fb066-default-rtdb.firebaseio.com/coaches/${userId}.json?auth=${context.rootGetters.token}`,
       {
         method: 'PUT',
         body: JSON.stringify(coachData)
