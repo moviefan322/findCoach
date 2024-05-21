@@ -7,6 +7,7 @@ import ContactCoach from './pages/requests/ContactCoach.vue'
 import RequestsReceived from './pages/requests/RequestsReceived.vue'
 import NotFound from './pages/NotFound.vue'
 import UserAuth from './pages/auth/UserAuth.vue'
+import store from './store/index'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -18,11 +19,21 @@ const router = createRouter({
       component: CoachDetail,
       children: [{ path: 'contact', component: ContactCoach, children: [] }]
     },
-    { path: '/register', component: CoachRegistration, children: [] },
-    { path: '/requests', component: RequestsReceived, children: [] },
-    { path: '/auth', component: UserAuth, children: [] },
+    { path: '/register', component: CoachRegistration, children: [], meta: { requiresAuth: true } },
+    { path: '/requests', component: RequestsReceived, children: [], meta: { requiresAuth: true } },
+    { path: '/auth', component: UserAuth, children: [], meta: { requiresUnauth: true } },
     { path: '/:notFound(.*)', component: NotFound, children: [] }
   ]
+})
+
+router.beforeEach((to, _, next) => {
+  if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
+    next('/auth')
+  } else if (to.meta.requiresUnauth && store.getters.isAuthenticated) {
+    next('/coaches')
+  } else {
+    next()
+  }
 })
 
 export default router

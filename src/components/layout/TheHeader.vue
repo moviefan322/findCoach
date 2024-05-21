@@ -21,14 +21,12 @@ export default {
   computed: {
     isLoggedIn() {
       return this.$store.getters.isAuthenticated
-    },
-    isCoach() {
-      return this.$store.getters['coaches/isCoach']
     }
   },
   methods: {
     logout() {
       this.$store.dispatch('logout')
+      this.$router.replace('/coaches')
     }
   }
 }
